@@ -5,6 +5,10 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"D:/Ecole/Prog_Cours/Prog2/Unreal/UltraGameRacing/UltraGameRacing/Content/Level/LevelGPE.umap",
+				"D:/Ecole/Prog_Cours/Prog2/Unreal/UltraGameRacing/UltraGameRacing/Content/GPE/BP/BP_Collectable.uasset",
+				"D:/Ecole/Prog_Cours/Prog2/Unreal/UltraGameRacing/UltraGameRacing/Content/GPE/BP/BP_LootBox.uasset",
+				"D:/Ecole/Prog_Cours/Prog2/Unreal/UltraGameRacing/UltraGameRacing/Content/GPE/BP/BP_GreenShell.uasset",
 				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Level/BaseLevel.umap"
 			]
 		}

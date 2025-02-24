@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = UltraGameRacingModuleRules
-build_property.ProjectDir = C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\BuildRulesProjects\UltraGameRacingModuleRules\
+build_property.ProjectDir = D:\Ecole\Prog_Cours\Prog2\Unreal\UltraGameRacing\UltraGameRacing\Intermediate\Build\BuildRulesProjects\UltraGameRacingModuleRules\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

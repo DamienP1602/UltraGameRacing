@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\PUEC1602\\Documents\\GitHub\\UltraGameRacing\\UltraGameRacing\\Source\\UltraGameRacing\\UltraGameRacing.Build.cs",
-		"C:\\Users\\PUEC1602\\Documents\\GitHub\\UltraGameRacing\\UltraGameRacing\\Source\\UltraGameRacing.Target.cs",
-		"C:\\Users\\PUEC1602\\Documents\\GitHub\\UltraGameRacing\\UltraGameRacing\\Source\\UltraGameRacingEditor.Target.cs"
+		"D:\\Ecole\\Prog_Cours\\Prog2\\Unreal\\UltraGameRacing\\UltraGameRacing\\Source\\UltraGameRacing\\UltraGameRacing.Build.cs",
+		"D:\\Ecole\\Prog_Cours\\Prog2\\Unreal\\UltraGameRacing\\UltraGameRacing\\Source\\UltraGameRacing.Target.cs",
+		"D:\\Ecole\\Prog_Cours\\Prog2\\Unreal\\UltraGameRacing\\UltraGameRacing\\Source\\UltraGameRacingEditor.Target.cs"
 	],
 	"EngineVersion": "5.4.4"
 }
