@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "UltraGameRacing",
+			"Path": "..\\Source\\UltraGameRacing.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "UltraGameRacingEditor",
+			"Path": "..\\Source\\UltraGameRacingEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

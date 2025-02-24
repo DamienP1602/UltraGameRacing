@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\puec1602\\documents\\github\\ultragameracing\\ultragameracing\\source\\ultragameracing\\ultragameracing.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\puec1602\\documents\\github\\ultragameracing\\ultragameracing\\intermediate\\build\\win64\\x64\\ultragameracingeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\puec1602\\documents\\github\\ultragameracing\\ultragameracing\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ultragameracing\\definitions.ultragameracing.h",
+            "c:\\users\\puec1602\\documents\\github\\ultragameracing\\ultragameracing\\source\\ultragameracing\\ultragameracing.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

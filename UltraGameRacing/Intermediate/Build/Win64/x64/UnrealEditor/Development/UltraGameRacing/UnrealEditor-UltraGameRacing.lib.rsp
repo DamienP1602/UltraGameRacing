@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-UltraGameRacing.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UltraGameRacingEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\UltraGameRacing.cpp.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\Default.rc2.res"
+/OUT:"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\UnrealEditor-UltraGameRacing.lib"
