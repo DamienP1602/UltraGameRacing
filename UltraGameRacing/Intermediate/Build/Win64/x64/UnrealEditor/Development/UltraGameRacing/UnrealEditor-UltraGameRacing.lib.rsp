@@ -7,6 +7,11 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UltraGameRacingEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\MainInterfaceHUD.gen.cpp.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\PlayerWidgets.gen.cpp.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\UltraGameRacing.init.gen.cpp.obj"
 "C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\UltraGameRacing.cpp.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\MainInterfaceHUD.cpp.obj"
+"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\PlayerWidgets.cpp.obj"
 "C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\Default.rc2.res"
 /OUT:"C:\Users\PUEC1602\Documents\GitHub\UltraGameRacing\UltraGameRacing\Intermediate\Build\Win64\x64\UnrealEditor\Development\UltraGameRacing\UnrealEditor-UltraGameRacing.lib"

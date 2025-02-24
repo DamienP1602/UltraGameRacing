@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UltraGameRacingModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f91ed85cb23f4c22c9ed4cd33d1c9e27ca1970d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a0791020265577135e2f8d178f0ca07d858c3c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("UltraGameRacingModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UltraGameRacingModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

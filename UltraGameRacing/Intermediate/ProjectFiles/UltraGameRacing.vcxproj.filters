@@ -11,6 +11,7 @@
     <None Include="..\..\Source\UltraGameRacingEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -37,6 +38,21 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\UltraGameRacing\UltraGameRacing.h">
       <Filter>Source\UltraGameRacing</Filter>
+    </ClInclude>
+    <Filter Include="Source\UltraGameRacing\Interface">
+      <UniqueIdentifier>{3A7ECCF3-F71C-305E-8F31-C7C6F6381D45}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\UltraGameRacing\Interface\MainInterfaceHUD.cpp">
+      <Filter>Source\UltraGameRacing\Interface</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UltraGameRacing\Interface\MainInterfaceHUD.h">
+      <Filter>Source\UltraGameRacing\Interface</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UltraGameRacing\Interface\PlayerWidgets.cpp">
+      <Filter>Source\UltraGameRacing\Interface</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UltraGameRacing\Interface\PlayerWidgets.h">
+      <Filter>Source\UltraGameRacing\Interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
