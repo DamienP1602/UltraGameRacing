@@ -26,9 +26,9 @@ void UPlayerMovementComponent::Move(const FInputActionValue& _value)
 
 	if (_dir.X == 0) return;
 
-	const FVector& _fwd = _owner->GetActorLocation() + _owner->GetActorForwardVector() * moveSpeed * GetWorld()->DeltaTimeSeconds * _dir.X;
+	//const FVector& _fwd = _owner->GetActorLocation() + _owner->GetActorForwardVector() * moveSpeed * GetWorld()->DeltaTimeSeconds * _dir.X;
 	const float& _rgt = rotationSpeed * GetWorld()->DeltaTimeSeconds * _dir.Y;
-	_owner->SetActorLocation(_fwd);
+	_owner->AddMovementInput(_owner->GetActorForwardVector(), _dir.X);
 	_owner->AddControllerYawInput(_rgt);
 	UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(_rgt));
 }

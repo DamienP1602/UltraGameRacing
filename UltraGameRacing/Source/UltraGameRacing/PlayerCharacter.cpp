@@ -3,6 +3,9 @@
 #include "PlayerInputComponent.h"
 #include <Kismet/KismetSystemLibrary.h>
 #include <EnhancedInputComponent.h>
+#include <GPE/Item.h>
+#include <GPE/Collectable.h>
+
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -20,7 +23,7 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	
 }
 
@@ -45,11 +48,23 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 void APlayerCharacter::UseItem(const FInputActionValue& _value)
 {
 	UKismetSystemLibrary::PrintString(this, "Item Used");
+	GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
+	RemoveItem();
 }
 
 void APlayerCharacter::NotifyActorBeginOverlap(AActor* _otherActor)
 {
 	Super::NotifyActorBeginOverlap(_otherActor);
 	// _otherActor is the actor that you are collisionning to
+	if (AItem* _item = Cast<AItem>(_otherActor))
+	{
+		_item->Execute(this);
+	}
+	if (ACollectable* _collectable = Cast<ACollectable>(_otherActor))
+	{
+		_collectable->Execute(this);
+	}
+
+
 }
 

@@ -10,8 +10,6 @@ class ULTRAGAMERACING_API UPlayerMovementComponent : public UActorMovementCompon
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
-	float moveSpeed = 250.0f;
-	UPROPERTY(EditAnywhere)
 	float rotationSpeed = 25.0f;
 
 public:	

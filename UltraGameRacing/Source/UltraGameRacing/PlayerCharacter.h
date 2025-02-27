@@ -9,6 +9,8 @@
 
 class UPlayerMovementComponent;
 class UPlayerInputComponent;
+class AItem;
+
 UCLASS()
 class ULTRAGAMERACING_API APlayerCharacter : public ACharacter
 {
@@ -21,7 +23,23 @@ class ULTRAGAMERACING_API APlayerCharacter : public ACharacter
 	TObjectPtr<UCameraComponent> camera = nullptr;
 	UPROPERTY(EditAnywhere) 
 	TObjectPtr<USpringArmComponent> springArm = nullptr;
-	
+	UPROPERTY(VisibleAnywhere)
+	TArray<TSubclassOf<AItem>> allItems;
+
+public:
+
+	FORCEINLINE TObjectPtr<UPlayerMovementComponent> GetMovement() { return movement; }
+	FORCEINLINE void AddItem(TSubclassOf<AItem> _itemToAdd)
+	{
+		if (allItems.Num() > 2) return;
+		allItems.Add(_itemToAdd);
+	}
+	FORCEINLINE void RemoveItem()
+	{
+		if (allItems.Num() < 1) return;
+		allItems.RemoveAt(0);
+	}
+
 public:
 	APlayerCharacter();
 
