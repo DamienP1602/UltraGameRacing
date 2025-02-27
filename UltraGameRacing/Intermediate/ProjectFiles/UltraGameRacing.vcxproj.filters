@@ -63,6 +63,9 @@
     <ClCompile Include="..\..\Source\UltraGameRacing\Private\GPE\Mushroom.cpp">
       <Filter>Source\UltraGameRacing\Private\GPE</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UltraGameRacing\Private\GPE\Spawner.cpp">
+      <Filter>Source\UltraGameRacing\Private\GPE</Filter>
+    </ClCompile>
     <Filter Include="Source\UltraGameRacing\Public">
       <UniqueIdentifier>{7387D244-F7E8-39BC-88C3-33CF047AA3D9}</UniqueIdentifier>
     </Filter>
@@ -85,6 +88,9 @@
       <Filter>Source\UltraGameRacing\Public\GPE</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UltraGameRacing\Public\GPE\Mushroom.h">
+      <Filter>Source\UltraGameRacing\Public\GPE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UltraGameRacing\Public\GPE\Spawner.h">
       <Filter>Source\UltraGameRacing\Public\GPE</Filter>
     </ClInclude>
   </ItemGroup>

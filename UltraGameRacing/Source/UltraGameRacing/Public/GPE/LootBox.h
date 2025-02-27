@@ -17,6 +17,7 @@ class ULTRAGAMERACING_API ALootBox : public ACollectable
 	GENERATED_BODY()
 
 
+
 	UPROPERTY(EditAnywhere) TArray<TSubclassOf<AItem>> allItems = TArray<TSubclassOf<AItem>>();
 
 
