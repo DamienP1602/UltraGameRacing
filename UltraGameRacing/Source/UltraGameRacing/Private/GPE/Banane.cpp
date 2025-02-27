@@ -2,6 +2,7 @@
 
 
 #include "GPE/Banane.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ABanane::ABanane()
 {
@@ -12,7 +13,7 @@ ABanane::ABanane()
 void ABanane::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void ABanane::Tick(float DeltaTime)
@@ -21,13 +22,23 @@ void ABanane::Tick(float DeltaTime)
 
 }
 
-void ABanane::Utilise(TObjectPtr<APawn> _pawn)
+void ABanane::Utilise(TObjectPtr<APlayerCharacter> _pawn)
 {
 
 }
 
-void ABanane::Execute(TObjectPtr<APawn> _pawn)
+void ABanane::Execute(TObjectPtr<APlayerCharacter> _pawn)
 {
-	Destroy();
+	initialSpeed = _pawn->GetCharacterMovement()->MaxWalkSpeed;
+	_pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed - subSpeed;
+	pawn = _pawn;
+	mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	mesh->SetVisibility(false);
+	FTimerHandle _timerHandle;
+	GetWorld()->GetTimerManager().SetTimer(_timerHandle, [&]() {
+		pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed;
+		Destroy();
+		}, stunTime, false);
+
 }
 

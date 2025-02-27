@@ -5,6 +5,7 @@
 #include <EnhancedInputComponent.h>
 #include <GPE/Item.h>
 #include <GPE/Collectable.h>
+#include <GPE/Mushroom.h>
 
 
 APlayerCharacter::APlayerCharacter()
@@ -24,7 +25,7 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+
 }
 
 void APlayerCharacter::Tick(float DeltaTime)
@@ -42,13 +43,15 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 	_input->BindAction(inputs->GetMoveAction(), ETriggerEvent::Triggered, movement.Get(), &UPlayerMovementComponent::Move);
 	_input->BindAction(inputs->GetLookBackAction(), ETriggerEvent::Triggered, movement.Get(), &UPlayerMovementComponent::TurnCamera);
-	_input->BindAction(inputs->GetUseAction(), ETriggerEvent::Triggered, this, &APlayerCharacter::UseItem);
+	_input->BindAction(inputs->GetUseAction(), ETriggerEvent::Started, this, &APlayerCharacter::UseItem);
 }
 
 void APlayerCharacter::UseItem(const FInputActionValue& _value)
 {
 	UKismetSystemLibrary::PrintString(this, "Item Used");
-	GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
+	AItem* _item = GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
+	_item->Utilise(this);
+
 	RemoveItem();
 }
 

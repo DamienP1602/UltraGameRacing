@@ -29,5 +29,5 @@ protected:
 	
 private:
 	void IncrementeTime(float Deltatime);
-
+	UFUNCTION() void OnSpawnedActorDestroyed(AActor* DestroyedActor);
 };

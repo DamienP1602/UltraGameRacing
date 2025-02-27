@@ -30,7 +30,7 @@ void UPlayerMovementComponent::Move(const FInputActionValue& _value)
 	const float& _rgt = rotationSpeed * GetWorld()->DeltaTimeSeconds * _dir.Y;
 	_owner->AddMovementInput(_owner->GetActorForwardVector(), _dir.X);
 	_owner->AddControllerYawInput(_rgt);
-	UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(_rgt));
+	//UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(_rgt));
 }
 
 void UPlayerMovementComponent::TurnCamera(const FInputActionValue& _value)

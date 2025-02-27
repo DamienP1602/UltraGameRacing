@@ -25,11 +25,11 @@ void ASpawner::Tick(float DeltaTime)
 void ASpawner::Spawn()
 {
 	if (!actorToSpawn || currentActorSpawned) return;
-	
+
 	FVector _currentPos = GetActorLocation();
 	FRotator _currentRot = GetActorRotation();
 	currentActorSpawned = GetWorld()->SpawnActor<AActor>(actorToSpawn, _currentPos + offsetSpawn, _currentRot);
-
+	currentActorSpawned->OnDestroyed.AddDynamic(this, &ASpawner::OnSpawnedActorDestroyed);
 }
 
 void ASpawner::IncrementeTime(float Deltatime)
@@ -41,5 +41,12 @@ void ASpawner::IncrementeTime(float Deltatime)
 		currentTime = 0.f;
 		Spawn();
 	}
+}
+
+void ASpawner::OnSpawnedActorDestroyed(AActor* _destroyedActor)
+{
+
+	currentActorSpawned = nullptr;
+
 }
 

@@ -2,6 +2,7 @@
 
 
 #include "GPE/Mushroom.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 AMushroom::AMushroom()
 {
@@ -13,6 +14,7 @@ void AMushroom::BeginPlay()
 {
 	Super::BeginPlay();
 
+
 }
 
 void AMushroom::Tick(float DeltaTime)
@@ -21,27 +23,29 @@ void AMushroom::Tick(float DeltaTime)
 
 }
 
-void AMushroom::Utilise(TObjectPtr<APawn> _pawn)
+void AMushroom::Utilise(TObjectPtr<APlayerCharacter> _pawn)
 {
 	Boost(_pawn);
 }
 
-void AMushroom::Execute(TObjectPtr<APawn> _pawn)
+void AMushroom::Execute(TObjectPtr<APlayerCharacter> _pawn)
 {
 	Boost(_pawn);
-	mesh->DestroyComponent();
+	//mesh->DestroyComponent();
 }
 
-void AMushroom::Boost(TObjectPtr<APawn> _pawn)
+void AMushroom::Boost(TObjectPtr<APlayerCharacter> _pawn)
 {
 
 	UE_LOG(LogTemp, Warning, TEXT("Boost"));
-	mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	mesh->SetVisibility(false);
-	
+
+	initialSpeed = _pawn->GetCharacterMovement()->MaxWalkSpeed;
+	_pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed + addingSpeed;
+	pawn = _pawn;
 	FTimerHandle _timerHandle;
 	GetWorld()->GetTimerManager().SetTimer(_timerHandle, [&]() {
 		UE_LOG(LogTemp, Warning, TEXT("Fin Boost"));
+		pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed;
 		Destroy();
 		}, boostTime, false);
 }

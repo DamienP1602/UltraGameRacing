@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "../PlayerCharacter.h"
 #include "Item.generated.h"
+
 
 UCLASS()
 class ULTRAGAMERACING_API AItem : public AActor
 {
 	GENERATED_BODY()
-	
 
 
 protected:
@@ -18,6 +19,7 @@ protected:
 
 public:
 	FORCEINLINE TObjectPtr<UStaticMeshComponent> GetMesh() { return mesh; }
+
 
 public:	
 	AItem();
@@ -28,7 +30,7 @@ protected:
 
 public:
 
-	virtual void Utilise(TObjectPtr<APawn> _pawn) PURE_VIRTUAL(AItem::Utilise, )
-	virtual void Execute(TObjectPtr<APawn> _pawn) PURE_VIRTUAL(AItem::Execute, )
+	virtual void Utilise(TObjectPtr<APlayerCharacter> _pawn) PURE_VIRTUAL(AItem::Utilise, )
+	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) PURE_VIRTUAL(AItem::Execute, )
 
 };
