@@ -25,7 +25,7 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+
 }
 
 void APlayerCharacter::Tick(float DeltaTime)
@@ -51,11 +51,9 @@ void APlayerCharacter::UseItem(const FInputActionValue& _value)
 {
 	UKismetSystemLibrary::PrintString(this, "Item Used");
 	if (!HasItem()) return;
-	if (AMushroom* _mush = Cast<AMushroom>(allItems[0]))
-		_mush->Utilise(this);
-	else
-		GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
-	
+	AItem* _item = GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
+	_item->Utilise(this);
+
 	RemoveItem();
 }
 
