@@ -6,9 +6,7 @@
 #include "GPE/Item.h"
 #include "GreenShell.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class ULTRAGAMERACING_API AGreenShell : public AItem
 {
@@ -17,6 +15,13 @@ class ULTRAGAMERACING_API AGreenShell : public AItem
 	UPROPERTY(EditAnywhere) float rotationSpeed = 50.f;
 	UPROPERTY(EditAnywhere) TArray<TEnumAsByte<EObjectTypeQuery>> layersToDetect;
 	FVector moveDirection = FVector::ForwardVector;
+
+	UPROPERTY(EditAnywhere) float stunTime = 2.f;
+
+	UPROPERTY(EditAnywhere) float subSpeed = 300.f;
+	UPROPERTY() float initialSpeed = 0.f;
+
+	UPROPERTY() TObjectPtr<APlayerCharacter> pawn = nullptr;
 
 public:
 	AGreenShell();
@@ -29,6 +34,6 @@ protected:
 	void Rotate(float DeltaTime);
 	void UpdateDirection(float DeltaTime);
 
-	virtual void Utilise(TObjectPtr<APawn> _pawn) override;
-	virtual void Execute(TObjectPtr<APawn> _pawn) override;
+	virtual void Utilise(TObjectPtr<APlayerCharacter> _pawn) override;
+	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) override;
 };

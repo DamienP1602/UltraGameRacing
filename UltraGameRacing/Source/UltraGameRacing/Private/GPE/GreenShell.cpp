@@ -2,6 +2,7 @@
 
 
 #include "GPE/GreenShell.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 AGreenShell::AGreenShell()
@@ -76,14 +77,22 @@ void AGreenShell::UpdateDirection(float DeltaTime)
     
 }
 
-void AGreenShell::Utilise(TObjectPtr<APawn> _pawn)
+void AGreenShell::Utilise(TObjectPtr<APlayerCharacter> _pawn)
 {
     
 }
 
-void AGreenShell::Execute(TObjectPtr<APawn> _pawn)
+void AGreenShell::Execute(TObjectPtr<APlayerCharacter> _pawn)
 {
-
-    Destroy();
+    initialSpeed = _pawn->GetCharacterMovement()->MaxWalkSpeed;
+    _pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed - subSpeed;
+    pawn = _pawn;
+    mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    mesh->SetVisibility(false);
+    FTimerHandle _timerHandle;
+    GetWorld()->GetTimerManager().SetTimer(_timerHandle, [&]() {
+        pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed;
+        Destroy();
+        }, stunTime, false);
 }
 

@@ -10,8 +10,12 @@ UCLASS()
 class ULTRAGAMERACING_API AMushroom : public AItem
 {
 	GENERATED_BODY()
-	UPROPERTY(EditAnywhere) float boostValue = 50.f;
 	UPROPERTY(EditAnywhere) float boostTime = 2.f;
+
+	UPROPERTY(EditAnywhere) float addingSpeed = 300.f;
+	UPROPERTY() float initialSpeed = 0.f;
+
+	UPROPERTY() TObjectPtr<APlayerCharacter> pawn = nullptr;
 	
 public:	
 	AMushroom();
@@ -21,9 +25,9 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	virtual void Utilise(TObjectPtr<APawn> _pawn) override;
-	virtual void Execute(TObjectPtr<APawn> _pawn) override;
+	virtual void Utilise(TObjectPtr<APlayerCharacter> _pawn) override;
+	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) override;
 
 protected:
-	void Boost(TObjectPtr<APawn> _pawn);
+	void Boost(TObjectPtr<APlayerCharacter> _pawn);
 };
