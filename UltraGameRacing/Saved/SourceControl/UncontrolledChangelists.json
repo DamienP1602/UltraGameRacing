@@ -8,9 +8,10 @@
 				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Level/BaseLevel.umap",
 				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Level/Damienlevel.umap",
 				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/BP_GameMode.uasset",
-				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/UI/BP_HUD.uasset",
 				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/UI/BP_MainInterfaceHUD.uasset",
-				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/UI/BP_PlayerWidgets.uasset"
+				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/UI/BP_PlayerWidgets.uasset",
+				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/Bp_PawnTestDamien.uasset",
+				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprint/UI/BP_HUD.uasset"
 			]
 		}
 	]

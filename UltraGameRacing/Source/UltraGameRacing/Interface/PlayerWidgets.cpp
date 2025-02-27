@@ -1,11 +1,10 @@
 #include "PlayerWidgets.h"
 
-bool UPlayerWidgets::Initialize()
+void UPlayerWidgets::NativeConstruct()
 {
-	Super::Initialize();
+	Super::NativeConstruct();
 
 	UpdateSprite();
-	return true;
 }
 
 void UPlayerWidgets::UpdateSprite()

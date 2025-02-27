@@ -18,7 +18,7 @@ class ULTRAGAMERACING_API UPlayerWidgets : public UUserWidget
 	UPROPERTY(EditAnywhere, Category = "Image|Sprites") TArray<TObjectPtr<UTexture2D>> allItemSprites;
 	
 public:
-	virtual bool Initialize() override;
+	virtual void NativeConstruct() override;
 
 
 	void UpdateSprite();

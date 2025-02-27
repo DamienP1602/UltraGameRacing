@@ -8,7 +8,7 @@ public class UltraGameRacing : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "AIModule", "GameplayStateTreeModule", "NavigationSystem" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "AIModule", "GameplayStateTreeModule", "NavigationSystem", "OnlineSubsystem", "OnlineSubsystemUtils", "OnlineSubsystemSteam", });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

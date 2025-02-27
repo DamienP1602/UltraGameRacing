@@ -54,5 +54,14 @@
     <ClInclude Include="..\..\Source\UltraGameRacing\Interface\PlayerWidgets.h">
       <Filter>Source\UltraGameRacing\Interface</Filter>
     </ClInclude>
+    <Filter Include="Source\UltraGameRacing\Online">
+      <UniqueIdentifier>{68B8D2B7-D4C2-3C3E-B63D-9729E63A38A6}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\UltraGameRacing\Online\GIS_Online.cpp">
+      <Filter>Source\UltraGameRacing\Online</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UltraGameRacing\Online\GIS_Online.h">
+      <Filter>Source\UltraGameRacing\Online</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
