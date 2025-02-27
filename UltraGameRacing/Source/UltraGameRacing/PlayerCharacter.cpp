@@ -5,6 +5,7 @@
 #include <EnhancedInputComponent.h>
 #include <GPE/Item.h>
 #include <GPE/Collectable.h>
+#include <GPE/Mushroom.h>
 
 
 APlayerCharacter::APlayerCharacter()
@@ -41,14 +42,20 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	if (!_input) return;
 
 	_input->BindAction(inputs->GetMoveAction(), ETriggerEvent::Triggered, movement.Get(), &UPlayerMovementComponent::Move);
+	_input->BindAction(inputs->GetMoveAction(), ETriggerEvent::None, movement.Get(), &UPlayerMovementComponent::Move);
 	_input->BindAction(inputs->GetLookBackAction(), ETriggerEvent::Triggered, movement.Get(), &UPlayerMovementComponent::TurnCamera);
-	_input->BindAction(inputs->GetUseAction(), ETriggerEvent::Triggered, this, &APlayerCharacter::UseItem);
+	_input->BindAction(inputs->GetUseAction(), ETriggerEvent::Started, this, &APlayerCharacter::UseItem);
 }
 
 void APlayerCharacter::UseItem(const FInputActionValue& _value)
 {
 	UKismetSystemLibrary::PrintString(this, "Item Used");
-	GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
+	if (!HasItem()) return;
+	if (AMushroom* _mush = Cast<AMushroom>(allItems[0]))
+		_mush->Utilise(this);
+	else
+		GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
+	
 	RemoveItem();
 }
 

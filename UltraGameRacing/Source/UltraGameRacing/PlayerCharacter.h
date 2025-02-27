@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "InputMappingContext.h"
 #include <GameFramework/SpringArmComponent.h>
+#include <GameFramework/CharacterMovementComponent.h>
 #include <Camera/CameraComponent.h>
 #include "PlayerCharacter.generated.h"
 
@@ -27,16 +28,16 @@ class ULTRAGAMERACING_API APlayerCharacter : public ACharacter
 	TArray<TSubclassOf<AItem>> allItems;
 
 public:
-
+	FORCEINLINE bool HasItem() { return allItems.Num() > 0; }
 	FORCEINLINE TObjectPtr<UPlayerMovementComponent> GetMovement() { return movement; }
 	FORCEINLINE void AddItem(TSubclassOf<AItem> _itemToAdd)
 	{
-		if (allItems.Num() > 2) return;
+		if (allItems.Num() > 1) return;
 		allItems.Add(_itemToAdd);
 	}
 	FORCEINLINE void RemoveItem()
 	{
-		if (allItems.Num() < 1) return;
+		if (allItems.Num() < 0) return;
 		allItems.RemoveAt(0);
 	}
 
