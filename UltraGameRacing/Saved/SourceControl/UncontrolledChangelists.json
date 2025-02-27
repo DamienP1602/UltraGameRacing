@@ -5,6 +5,13 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Level/CCC_Level.umap",
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprints/BP_PlayerCharacter.uasset",
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprints/Inputs/IA_Use.uasset",
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprints/Inputs/IA_LookBack.uasset",
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprints/Inputs/IA_Move.uasset",
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprints/Inputs/IMC_Player.uasset",
+				"D:/GitHub/UltraGameRacing/UltraGameRacing/Content/Blueprints/BP_GM.uasset",
 				"C:/Users/PUEC1602/Documents/GitHub/UltraGameRacing/UltraGameRacing/Content/Level/BaseLevel.umap"
 			]
 		}
