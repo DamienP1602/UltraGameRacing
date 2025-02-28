@@ -16,30 +16,45 @@ UCLASS()
 class ULTRAGAMERACING_API APlayerRocket : public ACharacter
 {
 	GENERATED_BODY()
-	UPROPERTY(EditAnywhere)
+
+#pragma region Variable_Component
+	UPROPERTY(EditAnywhere, Category = "Player|Component")
 	TObjectPtr<UPlayerInputComponent> inputs = nullptr;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Player|Component")
 	TObjectPtr<UCameraComponent> camera = nullptr;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Player|Component")
 	TObjectPtr<USpringArmComponent> springArm = nullptr;
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Player|Inventory")
 	TArray<TSubclassOf<AItem>> allItems;
 
 	UPROPERTY()TObjectPtr<URace_GameInstanceSubsystem> raceSubsystem = nullptr;
+#pragma endregion
 
-	//movement
-	UPROPERTY(EditAnywhere)
+#pragma region Variable_Movement
+	UPROPERTY(EditAnywhere, Category = "Player|Movement")
 	float rotationSpeed = 50.0f;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Player|Movement")
 	float maxMoveSpeed = 1000.0f;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Player|Movement")
 	float minMoveSpeed = 500.0f;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Player|Movement")
 	float currentMoveSpeed = 0.0f;
 	UPROPERTY()
 	FVector2D direction;
 	UPROPERTY()
 	bool isForward = false;
+#pragma endregion
+
+#pragma region Overlap_Box
+	UPROPERTY()
+	FVector boxHalfSize = FVector(100.0f, 100.0f, 50.0f);
+	UPROPERTY(EditAnywhere, Category = "Player|Overlap")
+	TArray<TEnumAsByte<EObjectTypeQuery>> layersToDetect;
+	UPROPERTY()
+	FHitResult hitResult;
+	UPROPERTY()
+	float forceMult = 1000000.0f;
+#pragma endregion
 
 public:
 	FORCEINLINE bool HasItem() { return allItems.Num() > 0; }
@@ -68,4 +83,7 @@ private:
 	void Movement();
 	UFUNCTION() void Move(const FInputActionValue& _value);
 	UFUNCTION() void TurnCamera(const FInputActionValue& _value);
+
+	void Detect();
+	void Bounce(FHitResult _hitResult);
 };

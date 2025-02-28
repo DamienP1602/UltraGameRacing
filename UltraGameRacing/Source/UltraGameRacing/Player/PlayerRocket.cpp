@@ -11,6 +11,8 @@
 #include <GPE/FinalLine.h>
 #include <GPE/Ring.h>
 #include "../Component/PlayerInputComponent.h"
+#include <GPE/Banane.h>
+#include <GPE/GreenShell.h>
 
 
 APlayerRocket::APlayerRocket()
@@ -38,6 +40,7 @@ void APlayerRocket::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	Movement();
+	Detect();
 }
 
 void APlayerRocket::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -57,8 +60,13 @@ void APlayerRocket::UseItem(const FInputActionValue& _value)
 {
 	UKismetSystemLibrary::PrintString(this, "Item Used");
 	if (!HasItem()) return;
-	AItem* _item = GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
-	//_item->Utilise(this);
+	FVector _offsetToSpawn;
+	//if (Cast<ABanane>(allItems[0]))
+	//	_offsetToSpawn = GetActorLocation() - GetActorForwardVector() * FVector(200.0f, 0.0f, 0.0f);
+	if (Cast<AGreenShell>(allItems[0]))
+		_offsetToSpawn = GetActorLocation() + GetActorForwardVector() * FVector(200.0f, 0.0f, 0.0f);
+	AItem* _spawnedItem = GetWorld()->SpawnActor<AItem>(allItems[0], _offsetToSpawn, GetActorRotation());
+	_spawnedItem->Utilise(this);
 	RemoveItem();
 }
 
@@ -92,7 +100,11 @@ void APlayerRocket::Movement()
 		else if (currentMoveSpeed < 0.0f)
 			currentMoveSpeed += 10;
 		isForward ? AddMovementInput(GetActorForwardVector(), currentMoveSpeed) : AddMovementInput(-GetActorForwardVector(), currentMoveSpeed);
-		
+		if (currentMoveSpeed > 0.0f)
+		{
+			const float& _rgt = rotationSpeed * GetWorld()->DeltaTimeSeconds * direction.Y;
+			AddControllerYawInput(_rgt);
+		}
 	}
 	else
 	{
@@ -135,3 +147,39 @@ void APlayerRocket::TurnCamera(const FInputActionValue& _value)
 	bool isLookingBackward = _value.Get<bool>();
 	isLookingBackward ? springArm->SetRelativeRotation(FRotator(0, 180, 0)) : springArm->SetRelativeRotation(FRotator(0, 0, 0));
 }
+
+void APlayerRocket::Detect()
+{
+	bool _hasHit = UKismetSystemLibrary::BoxTraceSingleForObjects(this,
+		GetActorLocation(),
+		GetActorLocation(),
+		boxHalfSize,
+		FRotator::ZeroRotator,
+		layersToDetect,
+		true,
+		{},
+		EDrawDebugTrace::ForOneFrame,
+		hitResult,
+		true);
+	if (!_hasHit) return;
+
+	//Bounce(hitResult);
+
+}
+
+void APlayerRocket::Bounce(FHitResult _hitResult)
+{
+	FVector _normal = _hitResult.ImpactNormal;
+
+	FVector _impactDirection = _hitResult.ImpactPoint - GetActorLocation();
+
+	float _dotProduct = FVector::DotProduct(_impactDirection, _normal);
+	_impactDirection = _impactDirection - 2 * _dotProduct * _normal;
+	_impactDirection.Normalize();
+	//UKismetSystemLibrary::PrintString(this, _impactDirection.ToString());
+
+	USkeletalMeshComponent* _mesh = GetMesh();
+	//_mesh->AddForce(_impactDirection * forceMult);
+	//UKismetSystemLibrary::PrintString(this, (_impactDirection * forceMult).ToString());
+}
+
