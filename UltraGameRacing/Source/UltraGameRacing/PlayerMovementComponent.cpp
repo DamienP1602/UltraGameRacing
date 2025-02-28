@@ -71,6 +71,4 @@ void UPlayerMovementComponent::Movement()
 			owner->AddMovementInput(owner->GetActorForwardVector(), movement->MaxWalkSpeed);
 		}
 	}
-	UKismetSystemLibrary::PrintString(this, direction.ToString());
-	UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(movement->MaxWalkSpeed));
 }
