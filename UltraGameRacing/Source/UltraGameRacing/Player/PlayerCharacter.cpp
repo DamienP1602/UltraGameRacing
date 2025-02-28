@@ -1,6 +1,6 @@
 #include "PlayerCharacter.h"
-#include "PlayerMovementComponent.h"
-#include "PlayerInputComponent.h"
+#include "../Component/PlayerMovementComponent.h"
+#include "../Component/PlayerInputComponent.h"
 #include <Kismet/KismetSystemLibrary.h>
 #include <EnhancedInputComponent.h>
 #include <GPE/Item.h>

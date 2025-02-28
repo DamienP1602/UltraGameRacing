@@ -8,6 +8,7 @@
 #include <GPE/Item.h>
 #include <GPE/Collectable.h>
 #include <GPE/Mushroom.h>
+#include "../Component/PlayerInputComponent.h"
 
 APlayerRocket::APlayerRocket()
 {
