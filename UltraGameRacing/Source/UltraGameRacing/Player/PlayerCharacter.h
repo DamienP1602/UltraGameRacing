@@ -9,7 +9,7 @@
 
 #include <Subsystem/Race_GameInstanceSubsystem.h>
 
-#include "PlayerInputComponent.h"
+#include "../Component/PlayerInputComponent.h"
 
 #include "PlayerCharacter.generated.h"
 

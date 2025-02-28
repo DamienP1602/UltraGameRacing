@@ -10,6 +10,8 @@
 #include <GPE/Mushroom.h>
 #include <GPE/FinalLine.h>
 #include <GPE/Ring.h>
+#include "../Component/PlayerInputComponent.h"
+
 
 APlayerRocket::APlayerRocket()
 {
