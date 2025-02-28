@@ -41,6 +41,7 @@ void APlayerRocket::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	_input->BindAction(inputs->GetMoveAction(), ETriggerEvent::Triggered, this, &APlayerRocket::Move);
 	_input->BindAction(inputs->GetMoveAction(), ETriggerEvent::None, this, &APlayerRocket::Move);
 	_input->BindAction(inputs->GetLookBackAction(), ETriggerEvent::Triggered, this, &APlayerRocket::TurnCamera);
+	_input->BindAction(inputs->GetLookBackAction(), ETriggerEvent::None, this, &APlayerRocket::TurnCamera);
 	_input->BindAction(inputs->GetUseAction(), ETriggerEvent::Started, this, &APlayerRocket::UseItem);
 }
 
@@ -117,5 +118,6 @@ void APlayerRocket::Move(const FInputActionValue& _value)
 
 void APlayerRocket::TurnCamera(const FInputActionValue& _value)
 {
-	UKismetSystemLibrary::PrintString(this, "Camera Turned");
+	bool isLookingBackward = _value.Get<bool>();
+	isLookingBackward ? springArm->SetRelativeRotation(FRotator(0, 180, 0)) : springArm->SetRelativeRotation(FRotator(0, 0, 0));
 }
