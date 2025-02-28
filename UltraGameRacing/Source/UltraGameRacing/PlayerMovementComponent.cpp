@@ -52,5 +52,5 @@ void UPlayerMovementComponent::Movement()
 		owner->AddControllerYawInput(_rgt);
 		owner->AddMovementInput(owner->GetActorForwardVector(), movement->MaxWalkSpeed);
 	}
-	UKismetSystemLibrary::PrintString(this, direction.ToString());
+	//UKismetSystemLibrary::PrintString(this, direction.ToString());
 }
