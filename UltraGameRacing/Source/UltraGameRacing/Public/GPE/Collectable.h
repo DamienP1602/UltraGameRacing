@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "../PlayerRocket.h"
+#include "../Player/PlayerRocket.h"
 #include "Collectable.generated.h"
 
 UCLASS()
