@@ -4,12 +4,21 @@
 #include "Subsystem/Race_GameInstanceSubsystem.h"
 #include <PlayerRocket.h>
 #include "GPE/Ring.h"
+#include "Net/UnrealNetwork.h"
 #include <Kismet/KismetSystemLibrary.h>
 
 void URace_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+
+
 	GetWorld()->GetTimerManager().SetTimer(positionUpdateTimer, this, &URace_GameInstanceSubsystem::SetAllPosition, 0.5f, true);
+}
+
+void URace_GameInstanceSubsystem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	//DOREPLIFETIME_CONDITION_NOTIFY(AExo_Spawner, materialIndex, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME(URace_GameInstanceSubsystem, players);
 }
 
 void URace_GameInstanceSubsystem::RegisterPlayer(TObjectPtr<APlayerRocket> _character)
@@ -100,10 +109,14 @@ void URace_GameInstanceSubsystem::SetAllPosition()
 		_assignedPositions[_i] = _rank;
 	}
 
+	
+
 	for (int i = 0; i < players.Num(); i++)
 	{
 		players[i].currentPosition = _assignedPositions[i];
+		//UKismetSystemLibrary::PrintString(this, FString::FromInt(_assignedPositions[i]));
 	}
+		//UKismetSystemLibrary::PrintString(this, "-----------------");
 }
 
 TObjectPtr<ARing> URace_GameInstanceSubsystem::GetNextRing(const FPlayersInfos& playerInfos)
@@ -125,8 +138,8 @@ void URace_GameInstanceSubsystem::AddLap(TObjectPtr<APlayerRocket> _character)
 			if (players[_i].ringCount == ringCount) {
 				players[_i].lapCount += 1;
 				players[_i].ringCount = 0;
-				UKismetSystemLibrary::PrintString(this, FString::FromInt(players[_i].lapCount));
-				UKismetSystemLibrary::PrintString(this, FString::FromInt(players[_i].ringCount));
+				//UKismetSystemLibrary::PrintString(this, FString::FromInt(players[_i].lapCount));
+				//UKismetSystemLibrary::PrintString(this, FString::FromInt(players[_i].ringCount));
 				return;
 
 			}
@@ -155,3 +168,4 @@ void URace_GameInstanceSubsystem::AddRingCount(TObjectPtr<APlayerRocket> _charac
 
 	}
 }
+

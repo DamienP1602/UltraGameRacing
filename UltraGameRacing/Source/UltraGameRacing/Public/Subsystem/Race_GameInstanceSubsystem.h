@@ -50,7 +50,7 @@ class ULTRAGAMERACING_API URace_GameInstanceSubsystem : public UGameInstanceSubs
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere) TArray<FPlayersInfos> players;
+	UPROPERTY(EditAnywhere, Replicated) TArray<FPlayersInfos> players;
 	UPROPERTY(EditAnywhere) TArray<FRingInfos> rings;
 	UPROPERTY(EditAnywhere) int ringCount = 0;
 	UPROPERTY(EditAnywhere) int playerCount = 0;
@@ -59,7 +59,7 @@ class ULTRAGAMERACING_API URace_GameInstanceSubsystem : public UGameInstanceSubs
 public:
 	FORCEINLINE int GetPlayerCount() const { return playerCount; }
 	FORCEINLINE int GetRingCount() const { return ringCount; }
-
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
 public:
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
@@ -78,5 +78,7 @@ public:
 
 	void AddLap(TObjectPtr<APlayerRocket> _character);
 	void AddRingCount(TObjectPtr<APlayerRocket> _character, const int& _indexRingCollide);
+
+
 
 };

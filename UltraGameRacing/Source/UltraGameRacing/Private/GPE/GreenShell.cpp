@@ -30,6 +30,7 @@ void AGreenShell::Move(float DeltaTime)
 {
 
     FVector _currentLoc = GetActorLocation();
+    moveDirection = GetActorForwardVector();
 	FVector _newLoc = _currentLoc + moveDirection * moveSpeed * DeltaTime;
 	SetActorLocation(_newLoc);
 }
