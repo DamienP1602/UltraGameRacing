@@ -11,12 +11,13 @@ class ULTRAGAMERACING_API ASpawner : public AActor
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere) float delayForRespawn = 3.f;
-	UPROPERTY() float currentTime = 0.f;
+	UPROPERTY(EditAnywhere) float currentTime = 0.f;
 
 	UPROPERTY(EditAnywhere) TSubclassOf<AActor> actorToSpawn = nullptr;
 	UPROPERTY(VisibleAnywhere) TObjectPtr<AActor> currentActorSpawned = nullptr;
 	UPROPERTY(EditAnywhere) FVector offsetSpawn = FVector::ZeroVector;
-	FTimerHandle timerHandle;
+
+
 
 public:	
 	ASpawner();

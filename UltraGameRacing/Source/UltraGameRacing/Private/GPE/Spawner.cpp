@@ -2,7 +2,7 @@
 
 
 #include "GPE/Spawner.h"
-
+#include <Kismet/KismetSystemLibrary.h>
 
 ASpawner::ASpawner()
 {
@@ -19,6 +19,7 @@ void ASpawner::BeginPlay()
 void ASpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 	IncrementeTime(DeltaTime);
 }
 
@@ -28,18 +29,26 @@ void ASpawner::Spawn()
 
 	FVector _currentPos = GetActorLocation();
 	FRotator _currentRot = GetActorRotation();
+
+
 	currentActorSpawned = GetWorld()->SpawnActor<AActor>(actorToSpawn, _currentPos + offsetSpawn, _currentRot);
+	if (!currentActorSpawned) {
+		return;
+	}
+
 	currentActorSpawned->OnDestroyed.AddDynamic(this, &ASpawner::OnSpawnedActorDestroyed);
+
+
 }
 
 void ASpawner::IncrementeTime(float Deltatime)
 {
-	if (currentActorSpawned)
-		return;
+	if (currentActorSpawned) return;
 	currentTime += Deltatime;
 	if (currentTime >= delayForRespawn) {
 		currentTime = 0.f;
 		Spawn();
+
 	}
 }
 
@@ -47,6 +56,7 @@ void ASpawner::OnSpawnedActorDestroyed(AActor* _destroyedActor)
 {
 
 	currentActorSpawned = nullptr;
+	UKismetSystemLibrary::PrintString(this, "DESTROY");
 
 }
 
