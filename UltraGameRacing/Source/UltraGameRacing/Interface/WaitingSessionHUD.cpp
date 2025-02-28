@@ -5,6 +5,8 @@ void AWaitingSessionHUD::BeginPlay()
 {
 	Super::BeginPlay();
 	Init();
+
+	GetOwningPlayerController()->SetShowMouseCursor(true);
 }
 
 void AWaitingSessionHUD::Init()
