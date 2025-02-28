@@ -6,7 +6,8 @@
 #include <GPE/Item.h>
 #include <GPE/Collectable.h>
 #include <GPE/Mushroom.h>
-
+#include <GPE/FinalLine.h>
+#include <GPE/Ring.h>
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -24,7 +25,11 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
+	raceSubsystem = GetGameInstance()->GetSubsystem<URace_GameInstanceSubsystem>();
+	if (raceSubsystem)
+	{
+		raceSubsystem->RegisterPlayer(this);
+	}
 
 }
 
@@ -70,6 +75,10 @@ void APlayerCharacter::NotifyActorBeginOverlap(AActor* _otherActor)
 		_collectable->Execute(this);
 	}
 
+	if (AFinalLine* _finalLine = Cast<AFinalLine>(_otherActor))
+		raceSubsystem->AddLap(this);
 
+	if (ARing* _ring = Cast<ARing>(_otherActor))
+		raceSubsystem->AddRingCount(this, _ring->GetIndex());
 }
 

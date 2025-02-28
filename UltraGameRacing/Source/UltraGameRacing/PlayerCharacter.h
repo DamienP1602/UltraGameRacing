@@ -6,6 +6,8 @@
 #include <GameFramework/SpringArmComponent.h>
 #include <GameFramework/CharacterMovementComponent.h>
 #include <Camera/CameraComponent.h>
+#include <Subsystem/Race_GameInstanceSubsystem.h>
+
 #include "PlayerCharacter.generated.h"
 
 class UPlayerMovementComponent;
@@ -26,6 +28,8 @@ class ULTRAGAMERACING_API APlayerCharacter : public ACharacter
 	TObjectPtr<USpringArmComponent> springArm = nullptr;
 	UPROPERTY(VisibleAnywhere)
 	TArray<TSubclassOf<AItem>> allItems;
+
+	UPROPERTY()TObjectPtr<URace_GameInstanceSubsystem> raceSubsystem = nullptr;
 
 public:
 	FORCEINLINE bool HasItem() { return allItems.Num() > 0; }
