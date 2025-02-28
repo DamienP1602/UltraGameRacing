@@ -15,7 +15,7 @@ class ULTRAGAMERACING_API AMushroom : public AItem
 	UPROPERTY(EditAnywhere) float addingSpeed = 300.f;
 	UPROPERTY() float initialSpeed = 0.f;
 
-	UPROPERTY() TObjectPtr<APlayerCharacter> pawn = nullptr;
+	UPROPERTY() TObjectPtr<APlayerRocket> pawn = nullptr;
 	
 public:	
 	AMushroom();
@@ -25,9 +25,9 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	virtual void Utilise(TObjectPtr<APlayerCharacter> _pawn) override;
-	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) override;
+	virtual void Utilise(TObjectPtr<APlayerRocket> _pawn) override;
+	virtual void Execute(TObjectPtr<APlayerRocket> _pawn) override;
 
 protected:
-	void Boost(TObjectPtr<APlayerCharacter> _pawn);
+	void Boost(TObjectPtr<APlayerRocket> _pawn);
 };

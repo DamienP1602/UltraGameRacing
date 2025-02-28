@@ -22,12 +22,12 @@ void ABanane::Tick(float DeltaTime)
 
 }
 
-void ABanane::Utilise(TObjectPtr<APlayerCharacter> _pawn)
+void ABanane::Utilise(TObjectPtr<APlayerRocket> _pawn)
 {
 
 }
 
-void ABanane::Execute(TObjectPtr<APlayerCharacter> _pawn)
+void ABanane::Execute(TObjectPtr<APlayerRocket> _pawn)
 {
 	initialSpeed = _pawn->GetCharacterMovement()->MaxWalkSpeed;
 	_pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed - subSpeed;

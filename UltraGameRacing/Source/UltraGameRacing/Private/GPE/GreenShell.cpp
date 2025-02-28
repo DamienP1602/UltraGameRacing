@@ -77,12 +77,12 @@ void AGreenShell::UpdateDirection(float DeltaTime)
     
 }
 
-void AGreenShell::Utilise(TObjectPtr<APlayerCharacter> _pawn)
+void AGreenShell::Utilise(TObjectPtr<APlayerRocket> _pawn)
 {
     
 }
 
-void AGreenShell::Execute(TObjectPtr<APlayerCharacter> _pawn)
+void AGreenShell::Execute(TObjectPtr<APlayerRocket> _pawn)
 {
     initialSpeed = _pawn->GetCharacterMovement()->MaxWalkSpeed;
     _pawn->GetCharacterMovement()->MaxWalkSpeed = initialSpeed - subSpeed;

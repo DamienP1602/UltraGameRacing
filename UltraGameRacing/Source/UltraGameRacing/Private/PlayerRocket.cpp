@@ -8,6 +8,8 @@
 #include <GPE/Item.h>
 #include <GPE/Collectable.h>
 #include <GPE/Mushroom.h>
+#include <GPE/FinalLine.h>
+#include <GPE/Ring.h>
 
 APlayerRocket::APlayerRocket()
 {
@@ -23,7 +25,11 @@ APlayerRocket::APlayerRocket()
 void APlayerRocket::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	raceSubsystem = GetGameInstance()->GetSubsystem<URace_GameInstanceSubsystem>();
+	if (raceSubsystem)
+	{
+		raceSubsystem->RegisterPlayer(this);
+	}
 }
 
 void APlayerRocket::Tick(float DeltaTime)
@@ -60,12 +66,18 @@ void APlayerRocket::NotifyActorBeginOverlap(AActor* _otherActor)
 	// _otherActor is the actor that you are collisionning to
 	if (AItem* _item = Cast<AItem>(_otherActor))
 	{
-		//_item->Execute(this);
+		_item->Execute(this);
 	}
 	if (ACollectable* _collectable = Cast<ACollectable>(_otherActor))
 	{
-		//_collectable->Execute(this);
+		_collectable->Execute(this);
 	}
+
+	if (AFinalLine* _finalLine = Cast<AFinalLine>(_otherActor))
+		raceSubsystem->AddLap(this);
+
+	if (ARing* _ring = Cast<ARing>(_otherActor))
+		raceSubsystem->AddRingCount(this, _ring->GetIndex());
 }
 
 void APlayerRocket::Movement()
@@ -108,7 +120,7 @@ void APlayerRocket::Movement()
 			
 		}
 	}
-	UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(currentMoveSpeed));
+	//UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(currentMoveSpeed));
 }
 
 void APlayerRocket::Move(const FInputActionValue& _value)

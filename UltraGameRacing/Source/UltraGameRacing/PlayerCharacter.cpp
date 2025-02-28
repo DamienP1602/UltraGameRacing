@@ -28,7 +28,7 @@ void APlayerCharacter::BeginPlay()
 	raceSubsystem = GetGameInstance()->GetSubsystem<URace_GameInstanceSubsystem>();
 	if (raceSubsystem)
 	{
-		raceSubsystem->RegisterPlayer(this);
+		//raceSubsystem->RegisterPlayer(this);
 	}
 
 }
@@ -60,7 +60,7 @@ void APlayerCharacter::UseItem(const FInputActionValue& _value)
 	UKismetSystemLibrary::PrintString(this, "Item Used");
 	if (!HasItem()) return;
 	AItem* _item = GetWorld()->SpawnActor<AItem>(allItems[0], GetActorLocation(), GetActorRotation());
-	_item->Utilise(this);
+	//_item->Utilise(this);
 
 	RemoveItem();
 }
@@ -71,17 +71,17 @@ void APlayerCharacter::NotifyActorBeginOverlap(AActor* _otherActor)
 	// _otherActor is the actor that you are collisionning to
 	if (AItem* _item = Cast<AItem>(_otherActor))
 	{
-		_item->Execute(this);
+		//_item->Execute(this);
 	}
 	if (ACollectable* _collectable = Cast<ACollectable>(_otherActor))
 	{
-		_collectable->Execute(this);
+		//_collectable->Execute(this);
 	}
 
-	if (AFinalLine* _finalLine = Cast<AFinalLine>(_otherActor))
-		raceSubsystem->AddLap(this);
+	//if (AFinalLine* _finalLine = Cast<AFinalLine>(_otherActor))
+		//raceSubsystem->AddLap(this);
 
-	if (ARing* _ring = Cast<ARing>(_otherActor))
-		raceSubsystem->AddRingCount(this, _ring->GetIndex());
+	//if (ARing* _ring = Cast<ARing>(_otherActor))
+		//raceSubsystem->AddRingCount(this, _ring->GetIndex());
 }
 

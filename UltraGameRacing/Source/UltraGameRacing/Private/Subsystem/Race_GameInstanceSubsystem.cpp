@@ -2,7 +2,7 @@
 
 
 #include "Subsystem/Race_GameInstanceSubsystem.h"
-#include "../PlayerCharacter.h"
+#include <PlayerRocket.h>
 #include "GPE/Ring.h"
 #include <Kismet/KismetSystemLibrary.h>
 
@@ -12,7 +12,7 @@ void URace_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collectio
 	GetWorld()->GetTimerManager().SetTimer(positionUpdateTimer, this, &URace_GameInstanceSubsystem::SetAllPosition, 0.5f, true);
 }
 
-void URace_GameInstanceSubsystem::RegisterPlayer(TObjectPtr<APlayerCharacter> _character)
+void URace_GameInstanceSubsystem::RegisterPlayer(TObjectPtr<APlayerRocket> _character)
 {
 	FPlayersInfos _infos = FPlayersInfos(_character);
 
@@ -49,7 +49,7 @@ FRingInfos URace_GameInstanceSubsystem::GetRingInfosByIndex(const int& _index)
 	return FRingInfos();
 }
 
-TObjectPtr<APlayerCharacter> URace_GameInstanceSubsystem::GetPlayersByName(const FString& _name)
+TObjectPtr<APlayerRocket> URace_GameInstanceSubsystem::GetPlayersByName(const FString& _name)
 {
 	FPlayersInfos _playerInfos = GetPlayersInfosByName(_name);
 	if (_playerInfos.character != nullptr)
@@ -116,7 +116,7 @@ TObjectPtr<ARing> URace_GameInstanceSubsystem::GetNextRing(const FPlayersInfos& 
 	return GetRingByIndex(_nextRingIndex);
 }
 
-void URace_GameInstanceSubsystem::AddLap(TObjectPtr<APlayerCharacter> _character)
+void URace_GameInstanceSubsystem::AddLap(TObjectPtr<APlayerRocket> _character)
 {
 	int _count = players.Num();
 	for (int _i = 0; _i < _count; _i++)
@@ -136,7 +136,7 @@ void URace_GameInstanceSubsystem::AddLap(TObjectPtr<APlayerCharacter> _character
 	}
 }
 
-void URace_GameInstanceSubsystem::AddRingCount(TObjectPtr<APlayerCharacter> _character, const int& _indexRingCollide)
+void URace_GameInstanceSubsystem::AddRingCount(TObjectPtr<APlayerRocket> _character, const int& _indexRingCollide)
 {
 	int _count = players.Num();
 

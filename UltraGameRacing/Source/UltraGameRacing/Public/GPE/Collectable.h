@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "../PlayerCharacter.h"
+#include "../PlayerRocket.h"
 #include "Collectable.generated.h"
 
 UCLASS()
@@ -27,6 +27,6 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) PURE_VIRTUAL(ACollectable::Execute, )
+	virtual void Execute(TObjectPtr<APlayerRocket> _pawn) PURE_VIRTUAL(ACollectable::Execute, )
 
 };

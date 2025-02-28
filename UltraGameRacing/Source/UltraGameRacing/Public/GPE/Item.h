@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "../PlayerCharacter.h"
+#include "../PlayerRocket.h"
 #include "Item.generated.h"
 
 
@@ -30,7 +30,7 @@ protected:
 
 public:
 
-	virtual void Utilise(TObjectPtr<APlayerCharacter> _pawn) PURE_VIRTUAL(AItem::Utilise, )
-	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) PURE_VIRTUAL(AItem::Execute, )
+	virtual void Utilise(TObjectPtr<APlayerRocket> _pawn) PURE_VIRTUAL(AItem::Utilise, )
+	virtual void Execute(TObjectPtr<APlayerRocket> _pawn) PURE_VIRTUAL(AItem::Execute, )
 
 };

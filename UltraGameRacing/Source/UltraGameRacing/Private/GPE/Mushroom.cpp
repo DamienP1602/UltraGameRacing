@@ -23,18 +23,18 @@ void AMushroom::Tick(float DeltaTime)
 
 }
 
-void AMushroom::Utilise(TObjectPtr<APlayerCharacter> _pawn)
+void AMushroom::Utilise(TObjectPtr<APlayerRocket> _pawn)
 {
 	Boost(_pawn);
 }
 
-void AMushroom::Execute(TObjectPtr<APlayerCharacter> _pawn)
+void AMushroom::Execute(TObjectPtr<APlayerRocket> _pawn)
 {
 	Boost(_pawn);
 	//mesh->DestroyComponent();
 }
 
-void AMushroom::Boost(TObjectPtr<APlayerCharacter> _pawn)
+void AMushroom::Boost(TObjectPtr<APlayerRocket> _pawn)
 {
 
 	UE_LOG(LogTemp, Warning, TEXT("Boost"));

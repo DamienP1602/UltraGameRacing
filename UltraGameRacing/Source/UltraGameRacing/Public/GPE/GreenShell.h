@@ -21,7 +21,7 @@ class ULTRAGAMERACING_API AGreenShell : public AItem
 	UPROPERTY(EditAnywhere) float subSpeed = 300.f;
 	UPROPERTY() float initialSpeed = 0.f;
 
-	UPROPERTY() TObjectPtr<APlayerCharacter> pawn = nullptr;
+	UPROPERTY() TObjectPtr<APlayerRocket> pawn = nullptr;
 
 public:
 	AGreenShell();
@@ -34,6 +34,6 @@ protected:
 	void Rotate(float DeltaTime);
 	void UpdateDirection(float DeltaTime);
 
-	virtual void Utilise(TObjectPtr<APlayerCharacter> _pawn) override;
-	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) override;
+	virtual void Utilise(TObjectPtr<APlayerRocket> _pawn) override;
+	virtual void Execute(TObjectPtr<APlayerRocket> _pawn) override;
 };

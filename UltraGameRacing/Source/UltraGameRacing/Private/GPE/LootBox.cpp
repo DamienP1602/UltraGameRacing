@@ -18,7 +18,7 @@ void ALootBox::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ALootBox::Execute(TObjectPtr<APlayerCharacter> _pawn)
+void ALootBox::Execute(TObjectPtr<APlayerRocket> _pawn)
 {
 	//if (_pawn.allItems.Count > 2)
 	//	return;

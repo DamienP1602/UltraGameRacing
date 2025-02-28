@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+
+
 #include "Race_GameInstanceSubsystem.generated.h"
 
-class APlayerCharacter;
+class APlayerRocket;
 class ARing;
 
 USTRUCT()
@@ -17,11 +19,11 @@ struct FPlayersInfos
 	UPROPERTY(EditAnywhere) int currentPosition = -1;
 	UPROPERTY(EditAnywhere) int ringCount = 0;
 	UPROPERTY(EditAnywhere) int lapCount = 0;
-	UPROPERTY(EditAnywhere) TObjectPtr<APlayerCharacter> character = nullptr;
+	UPROPERTY(EditAnywhere) TObjectPtr<APlayerRocket> character = nullptr;
 
 	FPlayersInfos(){}
 
-	FPlayersInfos(TObjectPtr<APlayerCharacter> _charcacter) {
+	FPlayersInfos(TObjectPtr<APlayerRocket> _charcacter) {
 		character = _charcacter;
 		//name = character->GetName();
 	}
@@ -62,19 +64,19 @@ public:
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
-	void RegisterPlayer(TObjectPtr<APlayerCharacter> _character);
+	void RegisterPlayer(TObjectPtr<APlayerRocket> _character);
 	void RegisterRing(TObjectPtr<ARing> _ring, int _index);
 	
 	FPlayersInfos GetPlayersInfosByName(const FString& _name);
 	FRingInfos GetRingInfosByIndex(const int& _index);
 
-	TObjectPtr<APlayerCharacter> GetPlayersByName(const FString& _name);
+	TObjectPtr<APlayerRocket> GetPlayersByName(const FString& _name);
 	TObjectPtr<ARing> GetRingByIndex(const int& _index);
 	
 	void SetAllPosition();
 	TObjectPtr<ARing> GetNextRing(const FPlayersInfos& playerInfos);
 
-	void AddLap(TObjectPtr<APlayerCharacter> _character);
-	void AddRingCount(TObjectPtr<APlayerCharacter> _character, const int& _indexRingCollide);
+	void AddLap(TObjectPtr<APlayerRocket> _character);
+	void AddRingCount(TObjectPtr<APlayerRocket> _character, const int& _indexRingCollide);
 
 };

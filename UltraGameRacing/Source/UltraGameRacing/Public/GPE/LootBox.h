@@ -30,6 +30,6 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	virtual void Execute(TObjectPtr<APlayerCharacter> _pawn) override;
+	virtual void Execute(TObjectPtr<APlayerRocket> _pawn) override;
 	
 };

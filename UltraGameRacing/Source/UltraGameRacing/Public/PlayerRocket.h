@@ -7,6 +7,7 @@
 #include "InputMappingContext.h"
 #include <GameFramework/SpringArmComponent.h>
 #include <Camera/CameraComponent.h>
+#include <Subsystem/Race_GameInstanceSubsystem.h>
 #include "PlayerRocket.generated.h"
 
 class UPlayerInputComponent;
@@ -23,6 +24,8 @@ class ULTRAGAMERACING_API APlayerRocket : public ACharacter
 	TObjectPtr<USpringArmComponent> springArm = nullptr;
 	UPROPERTY(VisibleAnywhere)
 	TArray<TSubclassOf<AItem>> allItems;
+
+	UPROPERTY()TObjectPtr<URace_GameInstanceSubsystem> raceSubsystem = nullptr;
 
 	//movement
 	UPROPERTY(EditAnywhere)
