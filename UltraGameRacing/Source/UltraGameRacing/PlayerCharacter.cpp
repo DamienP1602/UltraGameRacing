@@ -36,6 +36,9 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//UKismetSystemLibrary::PrintString(this,"TARACE");
+	AddMovementInput(GetActorForwardVector(),1000.0f);
+	//movement->Movement();
 
 }
 

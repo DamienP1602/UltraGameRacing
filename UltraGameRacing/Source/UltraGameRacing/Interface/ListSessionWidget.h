@@ -13,6 +13,7 @@ class ULTRAGAMERACING_API UListSessionWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, meta = (BindWidget)) TObjectPtr<UButton> joinSessionButton = nullptr;
+	UPROPERTY(EditAnywhere, meta = (BindWidget)) TObjectPtr<UButton> resetButton = nullptr;
 	UPROPERTY(EditAnywhere, meta = (BindWidget)) TObjectPtr<UButton> returnMenuButton = nullptr;
 	UPROPERTY(EditAnywhere, meta = (BindWidget)) TObjectPtr<UVerticalBox> listSessions = nullptr;
 

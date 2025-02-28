@@ -15,13 +15,15 @@ class ULTRAGAMERACING_API UPlayerMovementComponent : public UActorMovementCompon
 	UPROPERTY(EditAnywhere)
 	float maxMoveSpeed = 1000.0f;
 	UPROPERTY(EditAnywhere)
-	float minMoveSpeed = 0.0f;
+	float minMoveSpeed = 500.0f;
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCharacterMovementComponent> movement = nullptr;
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<ACharacter> owner = nullptr;
 	UPROPERTY()
 	FVector2D direction;
+	UPROPERTY()
+	bool isForward = false;
 
 public:	
 	UPlayerMovementComponent();
