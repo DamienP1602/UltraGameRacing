@@ -53,7 +53,7 @@ class ULTRAGAMERACING_API APlayerRocket : public ACharacter
 	UPROPERTY()
 	FHitResult hitResult;
 	UPROPERTY()
-	float forceMult = 1000000.0f;
+	float forceMult = 5000.0f;
 #pragma endregion
 
 public:

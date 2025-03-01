@@ -13,6 +13,7 @@
 #include "../Component/PlayerInputComponent.h"
 #include <GPE/Banane.h>
 #include <GPE/GreenShell.h>
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 APlayerRocket::APlayerRocket()
@@ -34,13 +35,18 @@ void APlayerRocket::BeginPlay()
 	{
 		raceSubsystem->RegisterPlayer(this);
 	}
+	FTimerHandle _timer;
+	FTimerDelegate _timerDelegate = FTimerDelegate::CreateLambda([this]()
+	{
+		Detect();
+	});
+	GetWorldTimerManager().SetTimer(_timer, _timerDelegate, 0.2, true);
 }
 
 void APlayerRocket::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	Movement();
-	Detect();
 }
 
 void APlayerRocket::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -58,13 +64,12 @@ void APlayerRocket::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 void APlayerRocket::UseItem(const FInputActionValue& _value)
 {
-	UKismetSystemLibrary::PrintString(this, "Item Used");
 	if (!HasItem()) return;
-	FVector _offsetToSpawn;
-	//if (Cast<ABanane>(allItems[0]))
-	//	_offsetToSpawn = GetActorLocation() - GetActorForwardVector() * FVector(200.0f, 0.0f, 0.0f);
-	if (Cast<AGreenShell>(allItems[0]))
-		_offsetToSpawn = GetActorLocation() + GetActorForwardVector() * FVector(200.0f, 0.0f, 0.0f);
+	FVector _offsetToSpawn = FVector(0);
+
+	if (allItems[0]->IsChildOf<AGreenShell>())
+		_offsetToSpawn = GetActorLocation() + GetActorForwardVector() * FVector(200.0f, 200.0f, 0.0f);
+
 	AItem* _spawnedItem = GetWorld()->SpawnActor<AItem>(allItems[0], _offsetToSpawn, GetActorRotation());
 	_spawnedItem->Utilise(this);
 	RemoveItem();
@@ -131,10 +136,8 @@ void APlayerRocket::Movement()
 			const float& _rgt = rotationSpeed * GetWorld()->DeltaTimeSeconds * direction.Y;
 			AddControllerYawInput(_rgt);
 			AddMovementInput(GetActorForwardVector(), currentMoveSpeed);
-			
 		}
 	}
-	//UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(currentMoveSpeed));
 }
 
 void APlayerRocket::Move(const FInputActionValue& _value)
@@ -154,7 +157,7 @@ void APlayerRocket::Detect()
 		GetActorLocation(),
 		GetActorLocation(),
 		boxHalfSize,
-		FRotator::ZeroRotator,
+		GetActorRotation(),
 		layersToDetect,
 		true,
 		{},
@@ -163,7 +166,7 @@ void APlayerRocket::Detect()
 		true);
 	if (!_hasHit) return;
 
-	//Bounce(hitResult);
+	Bounce(hitResult);
 
 }
 
@@ -176,10 +179,16 @@ void APlayerRocket::Bounce(FHitResult _hitResult)
 	float _dotProduct = FVector::DotProduct(_impactDirection, _normal);
 	_impactDirection = _impactDirection - 2 * _dotProduct * _normal;
 	_impactDirection.Normalize();
-	//UKismetSystemLibrary::PrintString(this, _impactDirection.ToString());
 
-	USkeletalMeshComponent* _mesh = GetMesh();
-	//_mesh->AddForce(_impactDirection * forceMult);
-	//UKismetSystemLibrary::PrintString(this, (_impactDirection * forceMult).ToString());
+	_impactDirection.Z = 0;
+	GetCharacterMovement()->GroundFriction = 0.0f;
+	LaunchCharacter(GetActorForwardVector() * _impactDirection * forceMult, true, true);
+	FTimerHandle _timer;
+	FTimerDelegate _timerDelegate = FTimerDelegate::CreateLambda([this]()
+		{
+			GetCharacterMovement()->GroundFriction = 8;
+		}
+	);
+	GetWorldTimerManager().SetTimer(_timer, _timerDelegate, 0.5, false);
 }
 
