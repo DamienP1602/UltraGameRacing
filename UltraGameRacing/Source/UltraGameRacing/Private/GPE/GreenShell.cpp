@@ -15,6 +15,7 @@ void AGreenShell::BeginPlay()
 {
 	Super::BeginPlay();
     moveDirection = GetActorForwardVector();
+    SetLifeSpan(15.f);
 
 }
 

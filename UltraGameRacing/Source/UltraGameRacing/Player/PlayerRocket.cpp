@@ -69,6 +69,8 @@ void APlayerRocket::UseItem(const FInputActionValue& _value)
 
 	if (allItems[0]->IsChildOf<AGreenShell>())
 		_offsetToSpawn = GetActorLocation() + GetActorForwardVector() * FVector(200.0f, 200.0f, 0.0f);
+	if (allItems[0]->IsChildOf<ABanane>())
+		_offsetToSpawn = GetActorLocation() - GetActorForwardVector() * FVector(200.0f, 200.0f, 0.0f);
 
 	AItem* _spawnedItem = GetWorld()->SpawnActor<AItem>(allItems[0], _offsetToSpawn, GetActorRotation());
 	_spawnedItem->Utilise(this);
