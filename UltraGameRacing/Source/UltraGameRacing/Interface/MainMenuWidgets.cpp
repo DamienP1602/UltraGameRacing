@@ -18,7 +18,7 @@ void UMainMenuWidgets::Init()
 
 void UMainMenuWidgets::PlayButtonExecute()
 {
-	GetWorld()->ServerTravel("/Game/Level/CircuitLevel?listen");
+	GetWorld()->ServerTravel("/Game/Level/LVL_01?listen");
 }
 
 void UMainMenuWidgets::JoinButtonExecute()
