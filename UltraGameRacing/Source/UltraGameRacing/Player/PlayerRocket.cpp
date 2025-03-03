@@ -103,10 +103,11 @@ void APlayerRocket::Movement()
 	if (direction.X == 0)
 	{
 		if (currentMoveSpeed > 0.0f)
-			currentMoveSpeed -= 10;
+			currentMoveSpeed -= 5;
 		else if (currentMoveSpeed < 0.0f)
-			currentMoveSpeed += 10;
-		isForward ? AddMovementInput(GetActorForwardVector(), currentMoveSpeed) : AddMovementInput(-GetActorForwardVector(), currentMoveSpeed);
+			currentMoveSpeed += 5;
+		isForward ? AddMovementInput(GetActorForwardVector(), currentMoveSpeed)
+				  : AddMovementInput(-GetActorForwardVector(), currentMoveSpeed);
 		if (currentMoveSpeed > 0.0f)
 		{
 			const float& _rgt = rotationSpeed * GetWorld()->DeltaTimeSeconds * direction.Y;
@@ -140,6 +141,7 @@ void APlayerRocket::Movement()
 			AddMovementInput(GetActorForwardVector(), currentMoveSpeed);
 		}
 	}
+	//UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(currentMoveSpeed));
 }
 
 void APlayerRocket::Move(const FInputActionValue& _value)
@@ -163,7 +165,7 @@ void APlayerRocket::Detect()
 		layersToDetect,
 		true,
 		{},
-		EDrawDebugTrace::ForOneFrame,
+		EDrawDebugTrace::None,
 		hitResult,
 		true);
 	if (!_hasHit) return;
