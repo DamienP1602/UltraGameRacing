@@ -78,6 +78,9 @@ private:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	UFUNCTION() void UseItem(const FInputActionValue& _value);
+	UFUNCTION(Server, Reliable, WithValidation) void ServerUseItem();
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastSpawnItem(FVector SpawnLocation, FRotator SpawnRotation, TSubclassOf<AItem> ItemClass);
 
 	virtual void NotifyActorBeginOverlap(AActor* _otherActor) override;
 	void Movement();

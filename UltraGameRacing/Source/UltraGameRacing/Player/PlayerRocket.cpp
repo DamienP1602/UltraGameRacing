@@ -37,9 +37,9 @@ void APlayerRocket::BeginPlay()
 	}
 	FTimerHandle _timer;
 	FTimerDelegate _timerDelegate = FTimerDelegate::CreateLambda([this]()
-	{
-		Detect();
-	});
+		{
+			Detect();
+		});
 	GetWorldTimerManager().SetTimer(_timer, _timerDelegate, 0.2, true);
 }
 
@@ -64,18 +64,50 @@ void APlayerRocket::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 void APlayerRocket::UseItem(const FInputActionValue& _value)
 {
-	if (!HasItem()) return;
-	FVector _offsetToSpawn = FVector(0);
 
+	if (!HasItem()) return;
+
+	ServerUseItem();
+
+
+}
+
+void APlayerRocket::ServerUseItem_Implementation()
+{
+	if (!HasItem()) return;
+
+	FVector _offsetToSpawn = FVector(0);
 	if (allItems[0]->IsChildOf<AGreenShell>())
 		_offsetToSpawn = GetActorLocation() + GetActorForwardVector() * FVector(200.0f, 200.0f, 0.0f);
 	if (allItems[0]->IsChildOf<ABanane>())
 		_offsetToSpawn = GetActorLocation() - GetActorForwardVector() * FVector(200.0f, 200.0f, 0.0f);
 
 	AItem* _spawnedItem = GetWorld()->SpawnActor<AItem>(allItems[0], _offsetToSpawn, GetActorRotation());
-	_spawnedItem->Utilise(this);
-	RemoveItem();
+	if (_spawnedItem)
+	{
+		_spawnedItem->Utilise(this);
+		MulticastSpawnItem(_offsetToSpawn, GetActorRotation(), allItems[0]);
+		RemoveItem();
+	}
 }
+
+bool APlayerRocket::ServerUseItem_Validate()
+{
+	return true;
+}
+
+void APlayerRocket::MulticastSpawnItem_Implementation(FVector _spawnLocation, FRotator _spawnRotation, TSubclassOf<AItem> _itemClass)
+{
+	if (!HasAuthority())
+	{
+		AItem* _spawnedItem = GetWorld()->SpawnActor<AItem>(_itemClass, _spawnLocation, _spawnRotation);
+		if (_spawnedItem)
+		{
+			_spawnedItem->Utilise(this);
+		}
+	}
+}
+
 
 void APlayerRocket::NotifyActorBeginOverlap(AActor* _otherActor)
 {
@@ -126,7 +158,7 @@ void APlayerRocket::Movement()
 			const float& _rgt = rotationSpeed * GetWorld()->DeltaTimeSeconds * direction.Y;
 			AddControllerYawInput(_rgt);
 			AddMovementInput(-GetActorForwardVector(), currentMoveSpeed);
-			
+
 
 		}
 		//si le perso fait marche avant
