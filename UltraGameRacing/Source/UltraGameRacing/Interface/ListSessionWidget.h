@@ -19,9 +19,12 @@ class ULTRAGAMERACING_API UListSessionWidget : public UUserWidget
 
 	UPROPERTY(EditAnywhere) TSubclassOf<UMainMenuWidgets> mainMenuRef = nullptr;
 
+	UPROPERTY() TObjectPtr<>
+
 public:
 	virtual void NativeConstruct() override;
 	void Init();
 
 	UFUNCTION() void ReturnMenuButtonExecute();
+	UFUNCTION() void ResetButtonExecute();
 };

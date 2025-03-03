@@ -21,3 +21,8 @@ void UListSessionWidget::ReturnMenuButtonExecute()
 	_widget->AddToViewport();
 		
 }
+
+void UListSessionWidget::ResetButtonExecute()
+{
+
+}
